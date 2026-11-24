@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>El regalo final ♡</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <style>
+
+        /* CONTENEDOR PRINCIPAL */
+
+        .contenedor-regalo {
+            width: min(900px, 94%);
+            margin: 35px auto;
+            text-align: center;
+        }
+
+        .introduccion-regalo {
+            max-width: 650px;
+            margin: 20px auto 30px;
+            line-height: 1.7;
+            color: #66536F;
+        }
+
+        /* CONTENEDOR DEL PASAPORTE */
+
+        .zona-pasaporte {
+            max-width: 470px;
+            margin: 35px auto;
+            perspective: 1000px;
+        }
+
+        .pasaporte {
+            position: relative;
+            background: linear-gradient(145deg, #D9B9E8, #C6A6D8);
+            border: 5px solid #B895CC;
+            border-radius: 22px;
+            padding: 35px 22px;
+            color: white;
+            box-shadow: 0 12px 25px rgba(102, 83, 111, 0.18);
+            overflow: hidden;
+            transition: transform 0.5s;
+        }
+
+        .pasaporte::before {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        .pasaporte-icono {
+            font-size: 65px;
+            margin-bottom: 12px;
+        }
+
+        .pasaporte-titulo {
+            font-size: 27px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .pasaporte-subtitulo {
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        .sello-pasaporte {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            border: 2px dashed rgba(255,255,255,0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transform: rotate(-12deg);
+        }
+
+        .sello-pasaporte span:first-child {
+            font-size: 30px;
+        }
+
+        .sello-pasaporte span:last-child {
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .texto-pasaporte {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 15px auto;
+            max-width: 300px;
+        }
+
+        /* ESTADO Y CONTADOR */
+
+        .estado-regalo {
+            margin: 22px auto;
+            color: #987B9C;
+            font-size: 14px;
+            min-height: 25px;
+        }
+
+        .contador-regalo {
+            background: #F8EAF2;
+            border-radius: 15px;
+            padding: 14px;
+            max-width: 350px;
+            margin: 20px auto;
+        }
+
+        .contador-titulo {
+            color: #987B9C;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .contador-reloj {
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+        }
+
+        .unidad-tiempo {
+            background: #FFF8F1;
+            border: 1px solid #EAD8E8;
+            border-radius: 10px;
+            padding: 9px 5px;
+            flex: 1;
+        }
+
+        .numero-tiempo {
+            display: block;
+            font-size: 19px;
+            font-weight: bold;
+            color: #896C99;
+        }
+
+        .etiqueta-tiempo {
+            display: block;
+            font-size: 10px;
+            color: #987B9C;
+        }
+
+        /* BOTÓN */
+
+        .boton-pasaporte {
+            border: none;
+            border-radius: 25px;
+            padding: 13px 25px;
+            background: #C6A6D8;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .boton-pasaporte:hover:not(:disabled) {
+            background: #AA87C1;
+            transform: translateY(-2px);
+        }
+
+        .boton-pasaporte:disabled {
+            background: #D8CEDB;
+            cursor: not-allowed;
+        }
+
+        /* ANIMACIÓN */
+
+        .pasaporte-abriendo {
+            animation: abrirPasaporte 1.2s ease;
+        }
+
+        @keyframes abrirPasaporte {
+
+            0% {
+                transform: rotateY(0deg) scale(1);
+            }
+
+            40% {
+                transform: rotateY(-12deg) scale(1.04);
+            }
+
+            70% {
+                transform: rotateY(8deg) scale(1.06);
+            }
+
+            100% {
+                transform: rotateY(0deg) scale(1);
+            }
+
+        }
+
+        /* TIQUETE */
+
+        .tiquete {
+            display: none;
+            max-width: 650px;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #FFF8F1, #FCEBF3);
+            border: 2px dashed #C6A6D8;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(102, 83, 111, 0.12);
+            text-align: left;
+        }
+
+        .tiquete.visible {
+            display: block;
+            animation: revelarTiquete 1s ease forwards;
+        }
+
+        @keyframes revelarTiquete {
+
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(0.92);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+        .tiquete-encabezado {
+            background: linear-gradient(135deg, #C6A6D8, #E8C6DC);
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .tiquete-encabezado h2 {
+            font-size: 23px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .tiquete-encabezado p {
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .tiquete-contenido {
+            padding: 25px 20px;
+            color: #66536F;
+        }
+
+        .destino-tiquete {
+            text-align: center;
+            margin: 10px auto 25px;
+        }
+
+        .destino-tiquete .nombre-destino {
+            font-size: 30px;
+            color: #896C99;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .destino-tiquete .subtitulo-destino {
+            font-size: 12px;
+            color: #987B9C;
+            letter-spacing: 2px;
+        }
+
+        .datos-tiquete {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin: 20px 0;
+        }
+
+        .dato-tiquete {
+            border-bottom: 1px solid #EAD8E8;
+            padding-bottom: 10px;
+        }
+
+        .dato-tiquete small {
+            display: block;
+            color: #987B9C;
+            font-size: 10px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .dato-tiquete strong {
+            color: #80658D;
+            font-size: 15px;
+        }
+
+        .mensaje-tiquete {
+            background: #F8EAF2;
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            line-height: 1.7;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .tiquete-pie {
+            background: #F3EAF8;
+            padding: 15px;
+            text-align: center;
+            color: #896C99;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        /* MENSAJE FINAL */
+
+        .mensaje-final-regalo {
+            margin: 35px auto;
+            padding: 22px;
+            background: #F3EAF8;
+            border-radius: 20px;
+            line-height: 1.7;
+            color: #66536F;
+        }
+
+        .mensaje-final-regalo h2 {
+            color: #896C99;
+            margin-bottom: 12px;
+        }
+
+        .volver-menu {
+            display: inline-block;
+            margin: 20px auto 35px;
+            color: #896C99;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* CELULARES */
+
+        @media (max-width: 480px) {
+
+            .pasaporte {
+                padding: 30px 15px;
+            }
+
+            .pasaporte-titulo {
+                font-size: 23px;
+            }
+
+            .datos-tiquete {
+                gap: 13px;
+            }
+
+            .destino-tiquete .nombre-destino {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        if (sessionStorage.getItem("accesoAutorizado") !== "true") {
+            window.location.href = "index.html";
+        }
+    </script>
+
+
+    <main class="contenedor-regalo">
+
+        <h1>♡ El regalo final ♡</h1>
+
+        <div class="introduccion-regalo">
+
+            <p>
+                Después de tantos momentos especiales,
+                ha llegado el momento de descubrir una última sorpresa.
+            </p>
+
+            <p>
+                Hay aventuras que se disfrutan más cuando
+                estamos juntos. ♡
+            </p>
+
+        </div>
+
+
+        <!-- PASAPORTE -->
+
+        <section class="zona-pasaporte">
+
+            <div class="pasaporte" id="pasaporte">
+
+                <div class="pasaporte-icono">
+                    🔒
+                </div>
+
+                <div class="pasaporte-titulo">
+                    PASAPORTE
+                </div>
+
+                <div class="pasaporte-subtitulo">
+                    DE AVENTURAS
+                </div>
+
+                <div class="sello-pasaporte">
+
+                    <span>♡</span>
+
+                    <span>VIAJE ESPECIAL</span>
+
+                </div>
+
+                <p class="texto-pasaporte">
+                    Un destino por descubrir,
+                    momentos por compartir
+                    y recuerdos por crear.
+                </p>
+
+                <div style="font-size:25px; margin-top:15px;">
+                    ✧ ♡ ✧
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTADOR -->
+
+        <div class="contador-regalo" id="contador-regalo">
+
+            <div class="contador-titulo">
+                ♡ Tu próxima aventura comienza en ♡
+            </div>
+
+            <div class="contador-reloj">
+
+                <div class="unidad-tiempo">
+                    <span class="numero-tiempo" id="dias">00</span>
+                    <span class="etiqueta-tiempo">Días</span>
+                </div>
+
+                <div class="unidad-tiempo">
+                    <span class="numero-tiempo" id="horas">00</span>
+                    <span class="etiqueta-tiempo">Horas</span>
+                </div>
+
+                <div class="unidad-tiempo">
+                    <span class="numero-tiempo" id="minutos">00</span>
+                    <span class="etiqueta-tiempo">Min</span>
+                </div>
+
+                <div class="unidad-tiempo">
+                    <span class="numero-tiempo" id="segundos">00</span>
+                    <span class="etiqueta-tiempo">Seg</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <p class="estado-regalo" id="estado-regalo">
+            Tu aventura todavía es un secreto... ♡
+        </p>
+
+
+        <button
+            class="boton-pasaporte"
+            id="boton-pasaporte"
+            onclick="abrirPasaporte()"
+            disabled>
+
+            Esperar al gran día ♡
+
+        </button>
+
+
+        <!-- TIQUETE DE VIAJE -->
+
+        <section class="tiquete" id="tiquete">
+
+            <div class="tiquete-encabezado">
+
+                <h2>BOARDING PASS ♡</h2>
+
+                <p>UN VIAJE MUY ESPECIAL</p>
+
+            </div>
+
+
+            <div class="tiquete-contenido">
+
+                <div class="destino-tiquete">
+
+                    <div class="nombre-destino">
+                        EL SANTUARIO
+                    </div>
+
+                    <div class="subtitulo-destino">
+                        ORIENTE ANTIOQUEÑO · COLOMBIA
+                    </div>
+
+                </div>
+
+
+                <div class="datos-tiquete">
+
+                    <div class="dato-tiquete">
+
+                        <small>FECHA</small>
+
+                        <strong>29 NOV 2026</strong>
+
+                    </div>
+
+                    <div class="dato-tiquete">
+
+                        <small>DESTINO</small>
+
+                        <strong>El Santuario</strong>
+
+                    </div>
+
+                    <div class="dato-tiquete">
+
+                        <small>PASAJEROS</small>
+
+                        <strong>Nuestra familia</strong>
+
+                    </div>
+
+                    <div class="dato-tiquete">
+
+                        <small>TIPO DE VIAJE</small>
+
+                        <strong>Aventura especial</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mensaje-tiquete">
+
+                    <div style="font-size:28px; margin-bottom:10px;">
+                        💗 ✨ 💗
+                    </div>
+
+                    <strong>¡Mi damita, llegó el gran día!</strong>
+
+                    <p style="margin-top:10px;">
+
+                        Nuestro regalo especial:
+                        un día para disfrutar, conocer un lugar bonito
+                        y crear nuevos recuerdos con las personas
+                        que más amamos.
+
+                    </p>
+
+                    <p style="margin-top:12px;">
+
+                        ¡Prepara tu corazón y disfruta
+                        este paseo familiar! ♡
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="tiquete-pie">
+
+                UN REGALO PREPARADO CON MUCHO AMOR ♡
+
+            </div>
+
+        </section>
+
+
+        <div class="mensaje-final-regalo">
+
+            <h2>Las mejores aventuras son juntos ♡</h2>
+
+            <p>
+                Lo más bonito de este regalo no es el destino,
+                sino poder compartirlo contigo y con nuestra familia.
+            </p>
+
+            <p style="margin-top:12px;">
+                ¡Feliz cumpleaños, mi damita! 💗
+            </p>
+
+        </div>
+
+
+        <a href="menu.html" class="volver-menu">
+            ♡ Volver al menú principal
+        </a>
+
+    </main>
+
+
+    <script>
+
+        // ==================================================
+        // MODO DE PRUEBAS
+        // ==================================================
+
+        const MODO_PRUEBA = true;
+
+        // Para probar, puedes usar:
+        // "2026-11-29T10:00:00"
+
+        const FECHA_HORA_SIMULADA = "2026-11-29T10:00:00";
+
+
+        // ==================================================
+        // FECHA Y HORA
+        // ==================================================
+
+        const BASE_PRUEBA = new Date(
+            FECHA_HORA_SIMULADA + "-05:00"
+        ).getTime();
+
+        const BASE_REAL = Date.now();
+
+
+        function obtenerAhora() {
+
+            if (MODO_PRUEBA) {
+
+                return new Date(
+                    BASE_PRUEBA + (Date.now() - BASE_REAL)
+                );
+
+            }
+
+            return new Date();
+
+        }
+
+
+        function obtenerFechaColombia() {
+
+            const partes = new Intl.DateTimeFormat("en-CA", {
+                timeZone: "America/Bogota",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+            }).formatToParts(obtenerAhora());
+
+            const valores = {};
+
+            partes.forEach(parte => {
+                valores[parte.type] = parte.value;
+            });
+
+            return `${valores.year}-${valores.month}-${valores.day}`;
+
+        }
+
+
+        // ==================================================
+        // FECHA DEL REGALO
+        // ==================================================
+
+        const FECHA_REGALO = "2026-11-29";
+
+        const FECHA_OBJETIVO = new Date(
+            FECHA_REGALO + "T00:00:00-05:00"
+        );
+
+
+        // ==================================================
+        // CONTADOR
+        // ==================================================
+
+        function dosDigitos(numero) {
+
+            return String(numero).padStart(2, "0");
+
+        }
+
+
+        function actualizarEstadoRegalo() {
+
+            const ahora = obtenerAhora();
+
+            const hoy = obtenerFechaColombia();
+
+            const boton = document.getElementById(
+                "boton-pasaporte"
+            );
+
+            const contador = document.getElementById(
+                "contador-regalo"
+            );
+
+            const estado = document.getElementById(
+                "estado-regalo"
+            );
+
+
+            if (hoy >= FECHA_REGALO) {
+
+                contador.innerHTML = `
+                    <div style="color:#896C99; font-weight:bold;">
+                        ¡Hoy comienza nuestra aventura! ♡
+                    </div>
+                `;
+
+                boton.disabled = false;
+
+                boton.textContent =
+                    "Abrir mi pasaporte ♡";
+
+                estado.textContent =
+                    "¡Ha llegado el momento de descubrir tu regalo!";
+
+                return;
+
+            }
+
+
+            boton.disabled = true;
+
+            boton.textContent =
+                "Esperar al gran día ♡";
+
+            estado.textContent =
+                "Tu aventura todavía es un secreto... ♡";
+
+
+            const diferencia = Math.max(
+                0,
+                FECHA_OBJETIVO.getTime() - ahora.getTime()
+            );
+
+            const totalSegundos = Math.floor(
+                diferencia / 1000
+            );
+
+            const dias = Math.floor(
+                totalSegundos / 86400
+            );
+
+            const horas = Math.floor(
+                (totalSegundos % 86400) / 3600
+            );
+
+            const minutos = Math.floor(
+                (totalSegundos % 3600) / 60
+            );
+
+            const segundos = totalSegundos % 60;
+
+
+            contador.innerHTML = `
+
+                <div class="contador-titulo">
+                    ♡ Tu próxima aventura comienza en ♡
+                </div>
+
+                <div class="contador-reloj">
+
+                    <div class="unidad-tiempo">
+                        <span class="numero-tiempo">
+                            ${dosDigitos(dias)}
+                        </span>
+                        <span class="etiqueta-tiempo">Días</span>
+                    </div>
+
+                    <div class="unidad-tiempo">
+                        <span class="numero-tiempo">
+                            ${dosDigitos(horas)}
+                        </span>
+                        <span class="etiqueta-tiempo">Horas</span>
+                    </div>
+
+                    <div class="unidad-tiempo">
+                        <span class="numero-tiempo">
+                            ${dosDigitos(minutos)}
+                        </span>
+                        <span class="etiqueta-tiempo">Min</span>
+                    </div>
+
+                    <div class="unidad-tiempo">
+                        <span class="numero-tiempo">
+                            ${dosDigitos(segundos)}
+                        </span>
+                        <span class="etiqueta-tiempo">Seg</span>
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        // ==================================================
+        // ABRIR PASAPORTE
+        // ==================================================
+
+        let pasaporteAbierto = false;
+
+        function abrirPasaporte() {
+
+            const hoy = obtenerFechaColombia();
+
+            if (hoy < FECHA_REGALO) {
+                return;
+            }
+
+            if (pasaporteAbierto) {
+                return;
+            }
+
+            pasaporteAbierto = true;
+
+
+            const pasaporte = document.getElementById(
+                "pasaporte"
+            );
+
+            const boton = document.getElementById(
+                "boton-pasaporte"
+            );
+
+            const tiquete = document.getElementById(
+                "tiquete"
+            );
+
+            const estado = document.getElementById(
+                "estado-regalo"
+            );
+
+
+            boton.disabled = true;
+
+            boton.textContent =
+                "Abriendo tu pasaporte... ♡";
+
+            estado.textContent =
+                "Preparando nuestra aventura... 💗";
+
+
+            pasaporte.classList.remove(
+                "pasaporte-abriendo"
+            );
+
+            void pasaporte.offsetWidth;
+
+            pasaporte.classList.add(
+                "pasaporte-abriendo"
+            );
+
+
+            setTimeout(function() {
+
+                pasaporte.querySelector(
+                    ".pasaporte-icono"
+                ).textContent = "💗";
+
+                pasaporte.querySelector(
+                    ".pasaporte-titulo"
+                ).textContent = "¡VAMOS DE VIAJE!";
+
+                pasaporte.querySelector(
+                    ".pasaporte-subtitulo"
+                ).textContent = "NUESTRA AVENTURA";
+
+                pasaporte.querySelector(
+                    ".texto-pasaporte"
+                ).textContent =
+                    "Tu destino ha sido revelado. ¡Prepara las maletas!";
+
+                tiquete.classList.add("visible");
+
+                boton.textContent =
+                    "¡Pasaporte abierto! ♡";
+
+                estado.textContent =
+                    "¡Nuestro destino es El Santuario, Antioquia!";
+
+                tiquete.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }, 1200);
+
+        }
+
+
+        // ==================================================
+        // INICIAR MÓDULO
+        // ==================================================
+
+        actualizarEstadoRegalo();
+
+        setInterval(actualizarEstadoRegalo, 1000);
+
+    </script>
+
+</body>
+
+</html>
