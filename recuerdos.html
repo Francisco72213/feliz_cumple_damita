@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nuestros momentos ♡</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body class="pagina-menu">
+
+    <main class="contenedor-menu">
+
+        <header class="encabezado-menu">
+
+            <span class="adorno-menu">📸</span>
+
+            <p class="subtitulo-menu">
+                Pequeños instantes, grandes recuerdos
+            </p>
+
+            <h1>Nuestros momentos</h1>
+
+            <p class="descripcion-menu">
+                Cada fotografía guarda una historia,
+                cada recuerdo tiene algo especial
+                y todos forman parte de lo que hemos vivido.
+            </p>
+
+            <span class="separador-menu">✧ ♡ ✧</span>
+
+        </header>
+
+        <section class="modulos-menu">
+
+            <!-- 1. NUESTRAS PRIMERAS FOTOS -->
+
+            <a href="recuerdos/primeras-fotos.html"
+               class="tarjeta-menu tarjeta-historia enlace-tarjeta">
+
+                <div class="icono-modulo">📷</div>
+
+                <h2>Nuestras primeras fotos</h2>
+
+                <p>
+                    Los primeros recuerdos que comenzamos
+                    a construir juntos.
+                </p>
+
+                <span class="texto-proximamente">
+                    Ver nuestros recuerdos ♡
+                </span>
+
+            </a>
+
+
+            <!-- 2. TUS CUMPLEAÑOS -->
+
+            <a href="recuerdos/cumpleanos.html"
+               class="tarjeta-menu tarjeta-regalo enlace-tarjeta">
+
+                <div class="icono-modulo">🎂</div>
+
+                <h2>Tus cumpleaños</h2>
+
+                <p>
+                    Una colección de fotografías
+                    para recordar tantas celebraciones especiales.
+                </p>
+
+                <span class="texto-proximamente">
+                    Ver nuestra colección ♡
+                </span>
+
+            </a>
+
+
+            <!-- 3. NUESTROS VIAJES -->
+
+            <a href="recuerdos/viajes.html"
+               class="tarjeta-menu tarjeta-recuerdos enlace-tarjeta">
+
+                <div class="icono-modulo">✈️</div>
+
+                <h2>Nuestros viajes</h2>
+
+                <p>
+                    Lugares que descubrimos juntos,
+                    aventuras y momentos que siempre recordaremos.
+                </p>
+
+                <span class="texto-proximamente">
+                    Ver nuestros viajes ♡
+                </span>
+
+            </a>
+
+
+            <!-- 4. NUESTRA FOTO ESPECIAL -->
+
+            <a href="recuerdos/foto-especial.html"
+               class="tarjeta-menu tarjeta-sorpresas enlace-tarjeta">
+
+                <div class="icono-modulo">💗</div>
+
+                <h2>Nuestra foto especial</h2>
+
+                <p>
+                    Un instante caminando juntos
+                    que representa mucho de nuestra historia.
+                </p>
+
+                <span class="texto-proximamente">
+                    Un recuerdo muy especial ♡
+                </span>
+
+            </a>
+
+            <!-- 5. UN RECUERDO DE MADRE E HIJA -->
+
+            <a href="recuerdos/foto-especial-Majo.html"
+            class="tarjeta-menu tarjeta-sorpresas enlace-tarjeta">
+
+                <div class="icono-modulo">👩‍👧</div>
+
+                <h2>Un recuerdo de madre e hija</h2>
+
+                <p>
+                    Un momento único entre ustedes,
+                    lleno de amor, complicidad y recuerdos inolvidables.
+                </p>
+
+                <span class="texto-proximamente">
+                    Un recuerdo para siempre ♡
+                </span>
+
+            </a>
+
+        </section>
+
+        <footer class="pie-menu">
+
+            <p>
+                Los mejores recuerdos son los que seguimos construyendo.
+            </p>
+
+            <a href="menu.html" class="enlace-regresar">
+                Volver al menú principal ♡
+            </a>
+
+        </footer>
+
+    </main>
+
+    <script>
+        if (sessionStorage.getItem("accesoAutorizado") !== "true") {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>
