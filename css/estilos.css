@@ -1,0 +1,663 @@
+
+/* =========================================
+   APP CUMPLE - ESTILOS DE INICIO
+   Paleta pastel romántica
+========================================= */
+
+:root {
+    --rosa: #F8DDE8;
+    --rosa-fuerte: #E9BBD0;
+    --lavanda: #E6DDF8;
+    --lila: #DCD6F7;
+    --crema: #FFF8F1;
+    --verde-pastel: #DFF0E6;
+    --malva: #C6A6D8;
+    --texto: #66536F;
+    --texto-suave: #9B8AA0;
+    --blanco: #FFFFFF;
+}
+
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--texto);
+}
+
+.pantalla-inicio {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    overflow: hidden;
+    position: relative;
+
+    background:
+        radial-gradient(circle at 10% 15%, #F8DDE8 0%, transparent 35%),
+        radial-gradient(circle at 90% 20%, #E6DDF8 0%, transparent 35%),
+        radial-gradient(circle at 20% 90%, #DFF0E6 0%, transparent 30%),
+        radial-gradient(circle at 90% 85%, #FFF1E6 0%, transparent 35%),
+        linear-gradient(135deg, #FFF8F1, #FDF5FA);
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
+.contenedor-sorpresa {
+    width: 100%;
+    max-width: 520px;
+    position: relative;
+    z-index: 2;
+    animation: aparecer 1.2s ease;
+}
+
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+.encabezado {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.detalle-encabezado {
+    font-size: 25px;
+    color: var(--malva);
+    letter-spacing: 8px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.texto-superior {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+}
+
+/* =========================================
+   TARJETA CENTRAL
+========================================= */
+
+.contenido-principal {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(230, 221, 248, 0.8);
+    border-radius: 30px;
+    padding: 40px 35px;
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(198, 166, 216, 0.18),
+        0 5px 15px rgba(233, 187, 208, 0.12);
+
+    backdrop-filter: blur(10px);
+}
+
+/* =========================================
+   ADORNO FLORAL
+========================================= */
+
+.adorno-floral {
+    font-size: 50px;
+    color: var(--malva);
+    margin-bottom: 10px;
+    animation: flotar 4s ease-in-out infinite;
+}
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 1.35;
+    color: #B76E94;
+    margin: 10px 0;
+}
+
+h1 span {
+    display: block;
+    color: #A58BC7;
+}
+
+/* =========================================
+   FECHA
+========================================= */
+
+.fecha {
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--texto-suave);
+    margin-top: 18px;
+}
+
+/* =========================================
+   SEPARADOR
+========================================= */
+
+.separador {
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.separador::before,
+.separador::after {
+    content: "";
+    height: 1px;
+    width: 70px;
+    background: var(--rosa-fuerte);
+}
+
+.separador span {
+    margin: 0 15px;
+    color: var(--malva);
+    font-size: 20px;
+}
+
+/* =========================================
+   MENSAJES
+========================================= */
+
+.mensaje-inicial {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.mensaje-secundario {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--texto-suave);
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   FORMULARIO
+========================================= */
+
+#formulario-acceso {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#formulario-acceso label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#contrasena {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--lila);
+    border-radius: 15px;
+    background: var(--crema);
+    color: var(--texto);
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: 0.3s;
+}
+
+#contrasena:focus {
+    border-color: var(--malva);
+    box-shadow: 0 0 10px rgba(198, 166, 216, 0.25);
+}
+
+#contrasena::placeholder {
+    color: #B9A8BD;
+}
+
+/* =========================================
+   BOTÓN
+========================================= */
+
+#boton-ingresar {
+    border: none;
+    border-radius: 15px;
+    padding: 16px;
+    background: linear-gradient(135deg, #C6A6D8, #D9B5D9);
+    color: var(--blanco);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(198, 166, 216, 0.25);
+}
+
+#boton-ingresar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(198, 166, 216, 0.35);
+    background: linear-gradient(135deg, #B78CCB, #CEABD4);
+}
+
+#boton-ingresar:active {
+    transform: scale(0.98);
+}
+
+/* =========================================
+   MENSAJE DE ERROR
+========================================= */
+
+.mensaje-error {
+    color: #C46A89;
+    font-size: 14px;
+    min-height: 20px;
+    margin: 0;
+}
+
+/* =========================================
+   PIE DE PÁGINA
+========================================= */
+
+.pie-pagina {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.pie-pagina span {
+    display: block;
+    color: var(--malva);
+    letter-spacing: 6px;
+    margin-top: 10px;
+}
+
+/* =========================================
+   ELEMENTOS DECORATIVOS
+========================================= */
+
+.decoracion {
+    position: absolute;
+    color: rgba(198, 166, 216, 0.65);
+    pointer-events: none;
+    animation: flotar 5s ease-in-out infinite;
+}
+
+.decoracion-1 {
+    top: 10%;
+    left: 8%;
+    font-size: 40px;
+}
+
+.decoracion-2 {
+    top: 20%;
+    right: 10%;
+    font-size: 30px;
+    animation-delay: 1s;
+}
+
+.decoracion-3 {
+    bottom: 15%;
+    left: 12%;
+    font-size: 35px;
+    animation-delay: 2s;
+}
+
+.decoracion-4 {
+    bottom: 10%;
+    right: 8%;
+    font-size: 45px;
+    animation-delay: 0.5s;
+}
+
+.decoracion-5 {
+    top: 50%;
+    left: 5%;
+    font-size: 25px;
+    animation-delay: 1.5s;
+}
+
+.decoracion-6 {
+    top: 60%;
+    right: 5%;
+    font-size: 30px;
+    animation-delay: 2.5s;
+}
+
+/* =========================================
+   ANIMACIONES
+========================================= */
+
+@keyframes flotar {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   ADAPTACIÓN A CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+
+    .pantalla-inicio {
+        padding: 20px 15px;
+    }
+
+    .contenido-principal {
+        padding: 30px 22px;
+        border-radius: 25px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .fecha {
+        font-size: 14px;
+    }
+
+    .mensaje-inicial {
+        font-size: 16px;
+    }
+
+    .texto-superior {
+        font-size: 12px;
+    }
+
+    .decoracion-1 {
+        top: 5%;
+        left: 3%;
+    }
+
+    .decoracion-2 {
+        top: 8%;
+        right: 4%;
+    }
+
+    .decoracion-3 {
+        bottom: 5%;
+        left: 5%;
+    }
+
+    .decoracion-4 {
+        bottom: 5%;
+        right: 5%;
+    }
+
+    .decoracion-5,
+    .decoracion-6 {
+        display: none;
+    }
+}
+
+
+/* ==========================================
+   MENU PRINCIPAL
+========================================== */
+
+.pagina-menu {
+    min-height: 100vh;
+    padding: 45px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-menu {
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+}
+
+.encabezado-menu {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.adorno-menu {
+    display: block;
+    font-size: 38px;
+    color: #C6A6D8;
+    margin-bottom: 12px;
+}
+
+.subtitulo-menu {
+    color: #A184AF;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.encabezado-menu h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(30px, 5vw, 43px);
+    font-weight: normal;
+    color: #80668D;
+    margin-bottom: 18px;
+}
+
+.descripcion-menu {
+    max-width: 580px;
+    margin: auto;
+    color: #776B7D;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.separador-menu {
+    display: block;
+    color: #C6A6D8;
+    font-size: 23px;
+    margin-top: 20px;
+}
+
+/* Tarjetas de los módulos */
+
+.modulos-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+/* Centrar el último módulo cuando hay una cantidad impar de tarjetas */
+.modulos-menu .tarjeta-menu:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 22px) / 2);
+}
+
+.tarjeta-menu {
+    padding: 30px 25px;
+    border-radius: 22px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(198, 166, 216, 0.25);
+    box-shadow: 0 8px 25px rgba(102, 83, 111, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-menu:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 13px 30px rgba(102, 83, 111, 0.13);
+}
+
+.tarjeta-historia {
+    background: linear-gradient(145deg, #FFF8FB, #F8DDE8);
+}
+
+.tarjeta-recuerdos {
+    background: linear-gradient(145deg, #FFFAF5, #FFF1E6);
+}
+
+.tarjeta-sorpresas {
+    background: linear-gradient(145deg, #FAF8FF, #E6DDF8);
+}
+
+.tarjeta-regalo {
+    background: linear-gradient(145deg, #F8FCF9, #DFF0E6);
+}
+
+/* Tarjeta especial madre e hija */
+.modulos-menu .tarjeta-menu:last-child {
+    background: linear-gradient(145deg, #FFF8F1, #F8DDE8);
+    border: 1px solid rgba(233, 187, 208, 0.45);
+}
+
+.icono-modulo {
+    font-size: 38px;
+    margin-bottom: 14px;
+}
+
+.tarjeta-menu h2 {
+    color: #80668D;
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: normal;
+    margin-bottom: 13px;
+}
+
+.tarjeta-menu p {
+    color: #776B7D;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.texto-proximamente {
+    display: inline-block;
+    color: #9879A7;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Pie de página */
+
+.pie-menu {
+    text-align: center;
+    margin-top: 42px;
+    color: #927D9A;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 650px) {
+
+    .pagina-menu {
+        padding: 35px 16px;
+        align-items: flex-start;
+    }
+
+    .encabezado-menu {
+        margin-bottom: 28px;
+    }
+
+    .modulos-menu {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .modulos-menu .tarjeta-menu:last-child:nth-child(odd) {
+        grid-column: auto;
+        justify-self: stretch;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+    }
+
+    .tarjeta-menu {
+        padding: 25px 20px;
+    }
+
+    .tarjeta-menu h2 {
+        font-size: 21px;
+    }
+
+    .pie-menu {
+        margin-top: 30px;
+    }
+}
+
+
+
+/* ==========================================
+   MODULO HISTORIA
+========================================== */
+
+.boton-conversacion {
+    display: inline-block;
+    padding: 13px 22px;
+    margin-top: 8px;
+    border-radius: 30px;
+    background: #C6A6D8;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.boton-conversacion:hover {
+    background: #A98ABD;
+    transform: translateY(-2px);
+}
+
+.enlace-regresar {
+    display: inline-block;
+    margin-top: 15px;
+    color: #9879A7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.enlace-regresar:hover {
+    color: #80668D;
+}
+
+
+.enlace-tarjeta {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Eliminar formato predeterminado de los enlaces del menú */
+a.tarjeta-menu {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Evitar que cambie el color al visitar la tarjeta */
+a.tarjeta-menu:visited {
+    color: inherit;
+}
+
+/* Conservar el color al pasar el cursor */
+a.tarjeta-menu:hover {
+    color: inherit;
+    text-decoration: none;
+}
