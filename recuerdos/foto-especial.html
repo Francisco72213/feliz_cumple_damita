@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nuestro camino juntos ♡</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 35px 18px 50px;
+            min-height: 100vh;
+            font-family: Georgia, 'Times New Roman', serif;
+            background: linear-gradient(135deg, #FFF8F1, #F8DDE8, #E6DDF8);
+            color: #66536F;
+        }
+
+        .contenedor {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .adorno {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            margin: 10px 0;
+        }
+
+        .subtitulo {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .foto-principal {
+            width: 100%;
+            max-height: 520px;
+            object-fit: cover;
+            display: block;
+            border-radius: 22px;
+            box-shadow: 0 8px 25px #8e71852b;
+            cursor: pointer;
+        }
+
+        .mensaje {
+            margin: 35px auto;
+            max-width: 680px;
+            padding: 30px 25px;
+            background: #ffffffa8;
+            border-radius: 22px;
+            font-size: 1.12rem;
+            line-height: 1.9;
+        }
+
+        .mensaje h2 {
+            color: #9A719F;
+            font-size: 1.6rem;
+            margin-top: 0;
+        }
+
+        .frase-final {
+            color: #A477A8;
+            font-size: 1.35rem;
+            font-style: italic;
+            margin-top: 25px;
+        }
+
+        .decoracion-final {
+            font-size: 1.5rem;
+            margin-top: 25px;
+            letter-spacing: 8px;
+        }
+
+        .regresar {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 13px 27px;
+            text-decoration: none;
+            color: white;
+            background: #B68ABF;
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+
+        .regresar:hover {
+            background: #9A719F;
+        }
+
+        /* Visor de fotografía */
+
+        .visor {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: #241c2beb;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .visor.activo {
+            display: flex;
+        }
+
+        .visor img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .cerrar {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            background: #ffffff35;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .mensaje {
+                padding: 23px 18px;
+                font-size: 1rem;
+            }
+
+            .frase-final {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="contenedor">
+
+        <div class="adorno">♡ ✧ ♡</div>
+
+        <h1>Nuestro camino juntos</h1>
+
+        <p class="subtitulo">
+            Hay fotografías que guardan mucho más
+            que un instante... guardan sentimientos,
+            historias y promesas.
+        </p>
+
+        <div class="marco-foto">
+
+            <img
+                src="../imagenes/recuerdos/foto-especial/foto-especial.jpg"
+                alt="Nuestra fotografía especial caminando juntos"
+                class="foto-principal"
+                id="foto-especial"
+            >
+
+        </div>
+
+        <section class="mensaje">
+
+            <h2>Mi lugar favorito ♡</h2>
+
+            <p>
+                De todos los lugares que hemos recorrido,
+                de todos los paisajes que hemos contemplado
+                y de todos los caminos que hemos descubierto,
+                hay algo que tengo muy claro:
+                lo más bonito siempre ha sido compartirlos contigo.
+            </p>
+
+            <p>
+                No necesito saber exactamente qué nos espera
+                más adelante. Me basta con saber que todavía
+                nos quedan muchos caminos por recorrer,
+                muchos lugares por conocer y muchos recuerdos
+                por construir.
+            </p>
+
+            <p class="frase-final">
+                Porque mi destino favorito siempre será caminar a tu lado. ♡
+            </p>
+
+        </section>
+
+        <div class="decoracion-final">
+            ✧ ♡ ✧
+        </div>
+
+        <a href="../recuerdos.html" class="regresar">
+            ♡ Volver a nuestros recuerdos
+        </a>
+
+    </main>
+
+    <!-- Visor ampliado -->
+
+    <div class="visor" id="visor">
+
+        <button class="cerrar" id="cerrar" aria-label="Cerrar">
+            ×
+        </button>
+
+        <img
+            src=""
+            alt="Nuestra fotografía especial ampliada"
+            id="foto-ampliada"
+        >
+
+    </div>
+
+    <script>
+
+        // Comprobar acceso
+
+        if (sessionStorage.getItem("accesoAutorizado") !== "true") {
+            window.location.href = "../index.html";
+        }
+
+        // Abrir fotografía ampliada
+
+        const foto = document.getElementById("foto-especial");
+        const visor = document.getElementById("visor");
+        const fotoAmpliada = document.getElementById("foto-ampliada");
+
+        foto.addEventListener("click", function () {
+            fotoAmpliada.src = foto.src;
+            visor.classList.add("activo");
+        });
+
+        // Cerrar visor
+
+        function cerrarVisor() {
+            visor.classList.remove("activo");
+        }
+
+        document.getElementById("cerrar").addEventListener("click", cerrarVisor);
+
+        visor.addEventListener("click", function (evento) {
+            if (evento.target === visor) {
+                cerrarVisor();
+            }
+        });
+
+        document.addEventListener("keydown", function (evento) {
+            if (evento.key === "Escape") {
+                cerrarVisor();
+            }
+        });
+
+    </script>
+
+</body>
+</html>

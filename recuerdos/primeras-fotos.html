@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nuestras primeras fotos ♡</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <style>
+        .galeria-contenedor {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .foto-protagonista {
+            background: white;
+            padding: 12px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(102, 83, 111, 0.10);
+            margin-bottom: 35px;
+        }
+
+        .foto-protagonista img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .mensaje-protagonista {
+            text-align: center;
+            padding: 20px 10px 10px;
+        }
+
+        .mensaje-protagonista h2 {
+            color: #80668D;
+            font-family: Georgia, serif;
+            font-weight: normal;
+        }
+
+        .mensaje-protagonista p {
+            color: #776B7D;
+            line-height: 1.7;
+        }
+
+        .titulo-galeria {
+            text-align: center;
+            color: #80668D;
+            font-family: Georgia, serif;
+            font-weight: normal;
+            margin-bottom: 22px;
+        }
+
+        .cuadricula-fotos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .miniatura {
+            background: white;
+            border: 0;
+            padding: 6px;
+            border-radius: 13px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(102, 83, 111, 0.08);
+            transition: transform 0.25s ease;
+        }
+
+        .miniatura:hover {
+            transform: translateY(-4px);
+        }
+
+        .miniatura img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            border-radius: 9px;
+        }
+
+        /* VISOR DE FOTOGRAFÍAS */
+
+        .visor-fotos {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(39, 27, 44, 0.94);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .visor-fotos.activo {
+            display: flex;
+        }
+
+        .visor-contenido {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .visor-imagen {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .visor-controles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 18px;
+            color: white;
+        }
+
+        .visor-controles button,
+        .visor-cerrar {
+            border: none;
+            background: #C6A6D8;
+            color: white;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .visor-cerrar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .regresar-galeria {
+            display: block;
+            text-align: center;
+            margin-top: 35px;
+            color: #9879A7;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+
+            .cuadricula-fotos {
+                gap: 9px;
+            }
+
+            .miniatura {
+                padding: 4px;
+            }
+
+            .visor-imagen {
+                max-height: 65vh;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body class="pagina-menu">
+
+    <main class="contenedor-menu galeria-contenedor">
+
+        <header class="encabezado-menu">
+
+            <span class="adorno-menu">📷</span>
+
+            <p class="subtitulo-menu">Nuestros primeros recuerdos</p>
+
+            <h1>Nuestras primeras fotos</h1>
+
+            <p class="descripcion-menu">
+                Cada fotografía guarda un pedacito
+                de nuestra historia.
+            </p>
+
+            <span class="separador-menu">✧ ♡ ✧</span>
+
+        </header>
+
+
+        <!-- FOTO PROTAGONISTA -->
+
+        <section class="foto-protagonista">
+
+            <img
+                src="../imagenes/recuerdos/primeras-fotos/1.jpg"
+                alt="Nuestra primera fotografía"
+            >
+
+            <div class="mensaje-protagonista">
+
+                <h2>El comienzo de tantos recuerdos ♡</h2>
+
+                <p>
+                    Si pudiera volver a vivir cada uno
+                    de estos momentos, volvería a elegir
+                    compartirlos contigo.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- GALERÍA COMPLETA -->
+
+        <h2 class="titulo-galeria">
+            Un poquito de nuestra historia ♡
+        </h2>
+
+        <section class="cuadricula-fotos" id="galeria">
+
+            <!-- Las fotografías se cargan automáticamente -->
+
+        </section>
+
+
+        <a href="../recuerdos.html" class="regresar-galeria">
+            Volver a nuestros momentos ♡
+        </a>
+
+
+    </main>
+
+
+    <!-- VISOR AMPLIADO -->
+
+    <div class="visor-fotos" id="visor">
+
+        <button class="visor-cerrar" id="cerrar-visor">
+            ×
+        </button>
+
+        <div class="visor-contenido">
+
+            <img
+                src=""
+                alt="Fotografía ampliada"
+                class="visor-imagen"
+                id="imagen-ampliada"
+            >
+
+            <div class="visor-controles">
+
+                <button id="foto-anterior">‹</button>
+
+                <span id="contador-fotos">1 / 9</span>
+
+                <button id="foto-siguiente">›</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Verificar acceso
+        if (sessionStorage.getItem("accesoAutorizado") !== "true") {
+            window.location.href = "../index.html";
+        }
+
+        // Configuración de fotografías
+        const totalFotos = 9;
+
+        const rutaFotos = "../imagenes/recuerdos/primeras-fotos/";
+
+        let fotoActual = 1;
+
+        const galeria = document.getElementById("galeria");
+        const visor = document.getElementById("visor");
+        const imagenAmpliada = document.getElementById("imagen-ampliada");
+        const contador = document.getElementById("contador-fotos");
+
+        // Crear las miniaturas automáticamente
+        for (let i = 1; i <= totalFotos; i++) {
+
+            const boton = document.createElement("button");
+
+            boton.className = "miniatura";
+            boton.type = "button";
+            boton.setAttribute("aria-label", "Ver fotografía " + i);
+
+            const imagen = document.createElement("img");
+
+            imagen.src = rutaFotos + i + ".jpg";
+            imagen.alt = "Recuerdo " + i;
+
+            boton.appendChild(imagen);
+
+            boton.addEventListener("click", function () {
+                abrirVisor(i);
+            });
+
+            galeria.appendChild(boton);
+        }
+
+        // Abrir fotografía ampliada
+        function abrirVisor(numero) {
+
+            fotoActual = numero;
+
+            actualizarVisor();
+
+            visor.classList.add("activo");
+
+        }
+
+        // Actualizar fotografía
+        function actualizarVisor() {
+
+            imagenAmpliada.src = rutaFotos + fotoActual + ".jpg";
+
+            contador.textContent = fotoActual + " / " + totalFotos;
+
+        }
+
+        // Fotografía anterior
+        document.getElementById("foto-anterior").addEventListener("click", function () {
+
+            fotoActual--;
+
+            if (fotoActual < 1) {
+                fotoActual = totalFotos;
+            }
+
+            actualizarVisor();
+
+        });
+
+        // Fotografía siguiente
+        document.getElementById("foto-siguiente").addEventListener("click", function () {
+
+            fotoActual++;
+
+            if (fotoActual > totalFotos) {
+                fotoActual = 1;
+            }
+
+            actualizarVisor();
+
+        });
+
+        // Cerrar visor
+        document.getElementById("cerrar-visor").addEventListener("click", cerrarVisor);
+
+        function cerrarVisor() {
+            visor.classList.remove("activo");
+        }
+
+        // Cerrar al hacer clic fuera de la fotografía
+        visor.addEventListener("click", function (evento) {
+
+            if (evento.target === visor) {
+                cerrarVisor();
+            }
+
+        });
+
+        // Navegación con teclado
+        document.addEventListener("keydown", function (evento) {
+
+            if (!visor.classList.contains("activo")) return;
+
+            if (evento.key === "ArrowRight") {
+                document.getElementById("foto-siguiente").click();
+            }
+
+            if (evento.key === "ArrowLeft") {
+                document.getElementById("foto-anterior").click();
+            }
+
+            if (evento.key === "Escape") {
+                cerrarVisor();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
